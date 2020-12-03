@@ -6,4 +6,5 @@ read commit
 git commit -m "$commit"
 git branch -M main
 git push origin main
+git push heroku main
 echo "Operation successful"
