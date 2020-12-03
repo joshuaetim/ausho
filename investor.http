@@ -1,0 +1,20 @@
+GET http://localhost:8000/api/investors
+
+###
+
+GET http://localhost:8000/api/investors/joshua-etim-2
+
+###
+
+POST http://localhost:8000/api/investors HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Emmanuel Etim Nse I",
+    "email": "emma@gmail.com",
+    "address": "39, Akinoke street",
+    "phone": "080358383828",
+    "bank": "Wema Bank",
+    "account_name": "Etim Emmanuel",
+    "account_number": "293920120012"
+}
