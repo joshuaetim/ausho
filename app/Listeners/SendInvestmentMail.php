@@ -11,7 +11,7 @@ use App\Notifications\InvestmentCreated as InvestmentNotification;
 
 class SendInvestmentMail implements ShouldQueue
 {
-    public $delay = 1; // 20 seconds delay for the queue
+    public $delay = 10; // 20 seconds delay for the queue
 
     /**
      * Create the event listener.
