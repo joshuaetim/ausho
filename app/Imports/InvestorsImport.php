@@ -19,7 +19,7 @@ class InvestorsImport implements ToModel, WithHeadingRow
     {
         HeadingRowFormatter::default('none');
 
-        $investor = new Investor([
+        $investor = Investor::create([
             'name' => $row['name'],
             'email' => $row['email'],
             'address' => $row['address'],
