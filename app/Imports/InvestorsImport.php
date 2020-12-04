@@ -18,7 +18,7 @@ class InvestorsImport implements ToModel, WithHeadingRow
     {
         HeadingRowFormatter::default('none');
 
-        return new Investor([
+        $investor = new Investor([
             'name' => $row['name'],
             'email' => $row['email'],
             'address' => $row['address'],
@@ -27,5 +27,11 @@ class InvestorsImport implements ToModel, WithHeadingRow
             'bank' => $row['bank'],
             'account_number' => $row['account_number'],
         ]);
+
+        $slug = Str::slug($investor->name. ' ' .$investor->id, '-');
+        $investor->slug = $slug;
+        $investor->save();
+
+        return $investor;
     }
 }
