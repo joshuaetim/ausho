@@ -27,10 +27,12 @@ Route::get('/investors', [InvestorController::class, 'index']);
 
 Route::get('/investor/{investor}', [InvestorController::class, 'show']);
 
+Route::view('/import', 'import');
+
 Route::post('/investors', [InvestorController::class, 'store']);
 
 Route::get('/download/{investor}/{investment}', [PDFController::class, 'createPDF']);
 
 Route::get('/export-investors', [InvestorController::class, 'export']);
 
-Route::get('/import-investors', [InvestorController::class, 'import']);
+Route::post('/import-investors', [InvestorController::class, 'import']);

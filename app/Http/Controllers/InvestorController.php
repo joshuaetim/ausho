@@ -34,9 +34,9 @@ class InvestorController extends Controller
      * Import Investors from Excel Sheet
      */
 
-    public function import()
+    public function import(Request $request)
     {
-        Excel::import(new InvestorsImport, 'investors.xlsx');
+        Excel::import(new InvestorsImport, $request->file('excel-data'));
 
         return 'Success';
     }
