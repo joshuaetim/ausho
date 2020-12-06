@@ -33,21 +33,5 @@ class InvestorsImport implements ToModel, WithHeadingRow
             'bank' => $row['bank'],
             'account_number' => $row['account_number'],
         ]);
-
-        // $investor = Investor::create([
-        //     'name' => $row['name'],
-        //     'email' => $row['email'],
-        //     'address' => $row['address'],
-        //     'phone' => $row['phone_number'],
-        //     'account_name' => $row['account_name'],
-        //     'bank' => $row['bank'],
-        //     'account_number' => $row['account_number'],
-        // ]);
-
-        // $slug = Str::slug($investor->name. ' ' .$investor->id, '-');
-        // $investor->slug = $slug;
-        // $investor->save();
-
-        // return $investor;
     }
 }
