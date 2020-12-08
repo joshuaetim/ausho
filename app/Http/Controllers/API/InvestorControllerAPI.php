@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Models\Investor;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Events\InvestmentCreated;
 use App\Http\Controllers\API\BaseController;
@@ -38,15 +39,26 @@ class InvestorControllerAPI extends BaseController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Investor $investor)
+    public function store(Request $request)
     {
         $validatedData = $this->validateData($request);
 
-        $investment = $investor->investments()->create($validatedData);
+        $investor = $this->createInvestor($validatedData);
 
-        event(new InvestmentCreated($investment, $investor)); // dispatches event for other guys to handle
+        return $this->sendResponse(new InvestorResource($investor), 'Record successfully saved');
+    }
 
-        return $investment;
+    /**
+     * Handles logic for creating investor
+     */
+    public function createInvestor($validatedData)
+    {
+        $investor = Investor::create($validatedData);
+        $slug = Str::slug($investor->name. ' ' .$investor->id, '-');
+        $investor->slug = $slug;
+        $investor->save();
+
+        return $investor;
     }
 
     /**
@@ -95,15 +107,19 @@ class InvestorControllerAPI extends BaseController
     }
 
     // auxilliary functions
-    private function validateData($data)
+    
+    private function validateData($request, $update=false)
     {
-        return $data->validate([
-                'name' => 'required',
-                'amount' => 'required',
-                'rate' => 'required',
-                'frequency' => 'required',
-                'duration' => 'required',
-                'category_id' => 'required',
-            ]);
+        $data = $request->validate([
+            'name' => 'required',
+            'email' => $update ? 'required' : 'required|unique:investors',
+            'address' => 'required',
+            'phone' => 'required',
+            'bank' => 'required',
+            'account_name' => 'required',
+            'account_number' => 'required',
+        ]);
+
+        return $data;
     }
 }
