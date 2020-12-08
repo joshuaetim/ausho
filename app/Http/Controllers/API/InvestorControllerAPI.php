@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Models\Investor;
 use Illuminate\Http\Request;
+use App\Events\InvestmentCreated;
 use App\Http\Controllers\API\BaseController;
 use App\Http\Resources\Investor as InvestorResource;
 
@@ -37,9 +38,15 @@ class InvestorControllerAPI extends BaseController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Investor $investor)
     {
-        //
+        $validatedData = $this->validateData($request);
+
+        $investment = $investor->investments()->create($validatedData);
+
+        event(new InvestmentCreated($investment, $investor)); // dispatches event for other guys to handle
+
+        return $investment;
     }
 
     /**
@@ -85,5 +92,18 @@ class InvestorControllerAPI extends BaseController
     public function destroy($id)
     {
         //
+    }
+
+    // auxilliary functions
+    private function validateData($data)
+    {
+        return $data->validate([
+                'name' => 'required',
+                'amount' => 'required',
+                'rate' => 'required',
+                'frequency' => 'required',
+                'duration' => 'required',
+                'category_id' => 'required',
+            ]);
     }
 }
