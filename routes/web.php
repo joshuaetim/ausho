@@ -23,6 +23,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/csrf', function(){
+    return response('', 204);
+});
+
 Route::get('/investors', [InvestorController::class, 'index']);
 
 Route::get('/investor/{investor}', [InvestorController::class, 'show']);
