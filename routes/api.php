@@ -100,6 +100,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 // Route::get('/test', [NotificationController::class, 'index']);
 
 Route::get('/test', function(){
-    $sid = config('values.key_secret');
-    return $sid;
+    return 'API end point working well';
 });
