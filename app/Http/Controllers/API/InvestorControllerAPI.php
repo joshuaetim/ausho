@@ -112,7 +112,7 @@ class InvestorControllerAPI extends BaseController
     {
         $data = $request->validate([
             'name' => 'required',
-            'email' => $update ? 'required' : 'required|unique:investors',
+            'email' => $update ? 'required' : 'required|email|unique:investors',
             'address' => 'required',
             'phone' => 'required',
             'bank' => 'required',
