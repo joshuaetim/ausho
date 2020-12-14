@@ -27,13 +27,8 @@ Route::get('/csrf', function(){
     return response('', 204);
 });
 
-Route::get('/investors', [InvestorController::class, 'index']);
-
-Route::get('/investor/{investor}', [InvestorController::class, 'show']);
-
 Route::view('/import', 'import');
 
-Route::post('/investors', [InvestorController::class, 'store']);
 
 Route::get('/download/{investor}/{investment}', [PDFController::class, 'createPDF']);
 
