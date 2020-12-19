@@ -11,16 +11,27 @@ use App\Http\Resources\Investor as InvestorResource;
 
 class InvestorControllerAPI extends BaseController
 {
+    public $user;
+
     /**
-     * Display a listing of the resource.
+     * Get User from Auth Service First
+     */
+    public function __construct()
+    {
+        $this->user = auth('api')->user();
+    }
+
+    /**
+     * Display a listing of the resource. 
+     * Only displays investor of related User
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $investors = Investor::all();
+        $investors = $this->user->investors;
 
-        return $this->sendResponse(InvestorResource::collection($investors), 'Data retreived successfully');
+        return $this->sendResponse($investors, 'Data retreived successfully');
     }
 
     /**
@@ -53,7 +64,7 @@ class InvestorControllerAPI extends BaseController
      */
     public function createInvestor($validatedData)
     {
-        $investor = Investor::create($validatedData);
+        $investor = $this->user->investors()->create($validatedData);
         $slug = Str::slug($investor->name. ' ' .$investor->id, '-');
         $investor->slug = $slug;
         $investor->save();
@@ -67,9 +78,15 @@ class InvestorControllerAPI extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Investor $investor)
+    public function show($investor)
     {
-        return $this->sendResponse(new InvestorResource($investor), 'Data retrieved successfully');
+        $data = $this->user->investors()->where('slug', $investor)->first();
+
+        if(! $data){
+            return $this->resourceNotFoundResponse('investor');
+        }
+
+        return $this->sendResponse($data, 'Data retrieved');
     }
 
     /**
@@ -87,23 +104,77 @@ class InvestorControllerAPI extends BaseController
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  string  $slug
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $investor)
     {
-        //
+        $validatedData = $this->validateData($request, true); // update set to true
+
+        $investor = $this->user->investors()->where('slug', $investor)->first();
+
+        if(! $investor){
+            return $this->resourceNotFoundResponse('investor');
+        }
+
+        $investor->update($validatedData);
+
+        $investor->refresh();
+
+        return $this->sendResponse($investor, 'Data updated Successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  string  $investor
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($investor)
     {
-        //
+        $investor = $this->user->investors()->where('slug', $investor)->first();
+
+        if(! $investor){
+            return $this->resourceNotFoundResponse('investor');
+        }
+
+        $investor->delete();
+
+        return $this->sendResponse([], 'Successfully deleted');
+    }
+
+    /**
+     * Enfore complete deletion of resource
+     * @param string $investor
+     * @return \Illuminate\Http\Response
+     */
+    public function forceDeleteInvestor($investor)
+    {
+        $investor = $this->getTrashedInvestor($investor);
+
+        if(! $investor){
+            return $this->resourceNotFoundResponse('investor');
+        }
+
+        $investor->forceDelete();
+
+        return $this->sendResponse([], 'Investor has been permanently deleted');
+    }
+
+    /**
+     * Restore Soft-Deleted resources
+     */
+    public function restoreInvestor($investor)
+    {
+        $investor = $this->getTrashedInvestor($investor);
+
+        if(! $investor){
+            return $this->resourceNotFoundResponse('investor');
+        }
+
+        $investor->restore();
+
+        return $this->sendResponse($investor, 'Investor restored Successfully');
     }
 
     // auxilliary functions
@@ -122,4 +193,12 @@ class InvestorControllerAPI extends BaseController
 
         return $data;
     }
+
+    private function getTrashedInvestor($id)
+    {
+        return $this->user->investors()->onlyTrashed()
+                ->where('slug', $id)
+                ->first();
+    }
+    
 }

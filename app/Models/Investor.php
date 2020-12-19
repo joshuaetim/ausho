@@ -33,6 +33,11 @@ class Investor extends Model
         return '2349081707665';
     }
 
+    public function user()
+    {
+        return $this->belongsTo("App\Models\User");
+    }
+    
     public function investments()
     {
         return $this->hasMany("App\Models\Investment");

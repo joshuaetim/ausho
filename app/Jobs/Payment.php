@@ -37,9 +37,12 @@ class Payment implements ShouldQueue
      */
     public function handle()
     {
+        $user = $this->investment->user;
+
         $payment = $this->investment->payments()->create([
             'investor_id' => $this->investorID,
             'amount' => $this->amount,
+            'user_id' => $user->id,
         ]);
 
         // post-increment 'counter' field in investments table

@@ -39,4 +39,13 @@ class BaseController extends Controller
 
         return response()->json($response, $code);
     }
+
+    /**
+     * Sends out resource Not Found Error
+     * @param string $resource
+     */
+    public function resourceNotFoundResponse($resource)
+    {
+        return $this->sendError('Not Found', ['error' => 'The requested '.$resource.' wasn\'t found on our database'], 404);
+    }
 }

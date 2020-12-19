@@ -22,4 +22,9 @@ class Investment extends Model
     {
         return $this->hasMany("App\Models\Payment");
     }
+
+    public function user()
+    {
+        return $this->belongsTo("App\Models\User");
+    }
 }

@@ -3,11 +3,11 @@
 use App\Jobs\Test;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\API\PaymentControllerAPI;
 use App\Http\Controllers\API\AuthController;
-use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\API\CategoryControllerAPI;
 use App\Http\Controllers\API\InvestorControllerAPI;
-use App\Http\Controllers\InvestmentController;
+use App\Http\Controllers\API\InvestmentControllerAPI;
 use App\Http\Controllers\NotificationController;
 
 /*
@@ -23,6 +23,10 @@ use App\Http\Controllers\NotificationController;
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
+
+Route::get('/checkUser', function(){
+    return auth('api')->user();
+});
 
 Route::middleware('auth:api')->group(function(){
 
@@ -46,47 +50,47 @@ Route::middleware('auth:api')->group(function(){
     
     Route::prefix('categories')->group(function(){
     
-        Route::get('/', [CategoryController::class, 'index']);
+        Route::get('/', [CategoryControllerAPI::class, 'index']);
     
-        Route::get('/{category}', [CategoryController::class, 'show']);
+        Route::get('/{category}', [CategoryControllerAPI::class, 'show']);
     
-        Route::post('/', [CategoryController::class, 'store']);
+        Route::post('/', [CategoryControllerAPI::class, 'store']);
     
-        Route::put('/{category}', [CategoryController::class, 'update']);
+        Route::put('/{category}', [CategoryControllerAPI::class, 'update']);
     
-        Route::delete('/{category}', [CategoryController::class, 'destroy']);
+        Route::delete('/{category}', [CategoryControllerAPI::class, 'destroy']);
     
     });
     
     Route::prefix('investments')->group(function(){
     
-        Route::get('/', [InvestmentController::class, 'index']);
+        Route::get('/', [InvestmentControllerAPI::class, 'index']);
     
-        Route::get('/{investment}', [InvestmentController::class, 'show']);
+        Route::get('/{investment}', [InvestmentControllerAPI::class, 'show']);
     
-        Route::post('/{investor}', [InvestmentController::class, 'store']);
+        Route::post('/', [InvestmentControllerAPI::class, 'store']);
     
-        Route::put('/{investment}', [InvestmentController::class, 'update']);
+        Route::put('/{investment}', [InvestmentControllerAPI::class, 'update']);
     
-        Route::delete('/{investment}', [InvestmentController::class, 'destroy']);
+        Route::delete('/{investment}', [InvestmentControllerAPI::class, 'destroy']);
     
-        Route::delete('/{investment}/force', [InvestmentController::class, 'forceDeleteInvestment']);
+        Route::delete('/{investment}/force', [InvestmentControllerAPI::class, 'forceDeleteInvestment']);
     
-        Route::post('/{investment}/restore', [InvestmentController::class, 'restoreInvestment']);
+        Route::post('/{investment}/restore', [InvestmentControllerAPI::class, 'restoreInvestment']);
     
     });
     
     Route::prefix('payments')->group(function(){
     
-        Route::get('/', [PaymentController::class, 'index']);
+        Route::get('/', [PaymentControllerAPI::class, 'index']);
     
-        Route::get('/{payment}', [PaymentController::class, 'show']);
+        Route::get('/{payment}', [PaymentControllerAPI::class, 'show']);
     
-        Route::get('/{payment}/submit', [PaymentController::class, 'submit']);
+        Route::get('/{payment}/submit', [PaymentControllerAPI::class, 'submit']);
     
-        Route::put('/{payment}', [PaymentController::class, 'update']);
+        Route::put('/{payment}', [PaymentControllerAPI::class, 'update']);
     
-        Route::delete('/{payment}', [PaymentController::class, 'destroy']);
+        Route::delete('/{payment}', [PaymentControllerAPI::class, 'destroy']);
     
     });
 

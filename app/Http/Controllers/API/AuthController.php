@@ -27,7 +27,7 @@ class AuthController extends BaseController
         ]);
 
         if($validator->fails()){
-            return $this->sendError('Validation error', $validator->errors(), 400);
+            return $this->sendError('Validation error', $validator->errors(), 422);
         }
 
         $input['password'] = bcrypt($input['password']);
