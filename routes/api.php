@@ -3,12 +3,13 @@
 use App\Jobs\Test;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\API\PaymentControllerAPI;
 use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\API\AdminController;
+use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\API\PaymentControllerAPI;
 use App\Http\Controllers\API\CategoryControllerAPI;
 use App\Http\Controllers\API\InvestorControllerAPI;
 use App\Http\Controllers\API\InvestmentControllerAPI;
-use App\Http\Controllers\NotificationController;
 
 /*
 |--------------------------------------------------------------------------
