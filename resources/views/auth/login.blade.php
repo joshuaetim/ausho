@@ -9,13 +9,6 @@
     <script src="{{asset('js/app.js')}}"></script>
 </head>
 <body>
-    <div>
-        @if ($errors->any())
-            @foreach ($errors->all() as $error)
-                {{$error}}
-            @endforeach
-        @endif
-    </div>
     <form action="/login" method="post" onsubmit="login()">
         <input type="email" name="email" id="emailLogin">
         <input type="password" name="password" id="passwordLogin">

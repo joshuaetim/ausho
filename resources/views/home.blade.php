@@ -14,7 +14,6 @@
     </h1>
     <div id="result"></div>
     <form action="/api/logout" method="post" onsubmit="logout()">
-        @csrf
         <input type="submit" value="Logout">
     </form>
 
