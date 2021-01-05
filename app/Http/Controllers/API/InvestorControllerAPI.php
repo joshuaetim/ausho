@@ -13,12 +13,9 @@ class InvestorControllerAPI extends BaseController
 {
     public $user;
 
-    /**
-     * Get User from Auth Service First
-     */
-    public function __construct()
+    public function temp()
     {
-        $this->user = auth('api')->user();
+        return auth()->user()->investors;
     }
 
     /**
@@ -29,7 +26,7 @@ class InvestorControllerAPI extends BaseController
      */
     public function index()
     {
-        $investors = $this->user->investors;
+        $investors = auth()->user()->investors;
 
         return $this->sendResponse($investors, 'Data retreived successfully');
     }
@@ -64,7 +61,7 @@ class InvestorControllerAPI extends BaseController
      */
     public function createInvestor($validatedData)
     {
-        $investor = $this->user->investors()->create($validatedData);
+        $investor = auth()->user()->investors()->create($validatedData);
         $slug = Str::slug($investor->name. ' ' .$investor->id, '-');
         $investor->slug = $slug;
         $investor->save();
@@ -80,7 +77,7 @@ class InvestorControllerAPI extends BaseController
      */
     public function show($investor)
     {
-        $data = $this->user->investors()->where('slug', $investor)->first();
+        $data = auth()->user()->investors()->where('slug', $investor)->first();
 
         if(! $data){
             return $this->resourceNotFoundResponse('investor');
@@ -111,7 +108,7 @@ class InvestorControllerAPI extends BaseController
     {
         $validatedData = $this->validateData($request, true); // update set to true
 
-        $investor = $this->user->investors()->where('slug', $investor)->first();
+        $investor = auth()->user()->investors()->where('slug', $investor)->first();
 
         if(! $investor){
             return $this->resourceNotFoundResponse('investor');
@@ -132,7 +129,7 @@ class InvestorControllerAPI extends BaseController
      */
     public function destroy($investor)
     {
-        $investor = $this->user->investors()->where('slug', $investor)->first();
+        $investor = auth()->user()->investors()->where('slug', $investor)->first();
 
         if(! $investor){
             return $this->resourceNotFoundResponse('investor');
@@ -196,7 +193,7 @@ class InvestorControllerAPI extends BaseController
 
     private function getTrashedInvestor($id)
     {
-        return $this->user->investors()->onlyTrashed()
+        return auth()->user()->investors()->onlyTrashed()
                 ->where('slug', $id)
                 ->first();
     }

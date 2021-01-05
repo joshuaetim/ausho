@@ -31,9 +31,8 @@ class AuthController extends BaseController
         }
 
         $input['password'] = bcrypt($input['password']);
-        $user = User::create($input);
+        Auth::login($user = User::create($input));
 
-        $success['token'] = $user->createToken('InvestApp')->accessToken;
         $success['user'] = $user->name;
 
         return $this->sendResponse($success, 'Successfully created account', 201);
@@ -48,9 +47,12 @@ class AuthController extends BaseController
     {
         $credentials = $request->only('email', 'password');
 
-        if(Auth::attempt($credentials)){
+        $remember = $request->remember;
+
+        if(Auth::attempt($credentials, $remember)){
+            $request->session()->regenerate();
+
             $user = Auth::user();
-            $success['token'] = $user->createToken('InvestApp')->accessToken;
             $success['user'] = $user->name;
 
             return $this->sendResponse($success, 'Login successfully', 200);
@@ -67,8 +69,11 @@ class AuthController extends BaseController
      */
     public function logout(Request $request)
     {
-        $token = Auth::guard('api')->user()->token();
-        $token->revoke();
+        Auth::guard('web')->logout();
+
+        $request->session()->invalidate();
+    
+        $request->session()->regenerateToken();
 
         return $this->sendResponse([], 'Successfully logged out', 200);
     }

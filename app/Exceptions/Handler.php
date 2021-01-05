@@ -38,23 +38,23 @@ class Handler extends ExceptionHandler
         //
     }
 
-    public function render($request, Throwable $e)
-    {
-        if($e instanceof ModelNotFoundException){
-            if($request->is('api/*')){
-                return response()->json([
-                    'error' => 'Resource not found',
-                ], 404);
-            }
-        }
+    // public function render($request, Throwable $e)
+    // {
+    //     if($e instanceof ModelNotFoundException){
+    //         if($request->is('api/*')){
+    //             return response()->json([
+    //                 'error' => 'Resource not found',
+    //             ], 404);
+    //         }
+    //     }
 
-        return parent::render($request, $e);
-    }
+    //     return parent::render($request, $e);
+    // }
 
-    public function unauthenticated($request, AuthenticationException $e)
-    {
-        return response()->json([
-            'error' => 'Unauthorized',
-        ], 401);
-    }
+    // public function unauthenticated($request, AuthenticationException $e)
+    // {
+    //     return response()->json([
+    //         'error' => 'Unauthorized',
+    //     ], 401);
+    // }
 }
