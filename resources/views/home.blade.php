@@ -31,6 +31,13 @@
         <input type="submit" value="Create Investor"><br>
     </form>
 
+    <br><hr>
+    <h3>Add Category</h3>
+    <form action="#" method="post" onsubmit="addCategory()">
+        <input type="text" name="name" placeholder="name" id="nameCategory">
+        <input type="submit" value="Add">
+    </form>
+
     <script>
         var resultObj = document.querySelector("#result");
 
@@ -65,8 +72,20 @@
                 bank: bank.value,
                 account_name: accountName.value,
                 account_number: accountNumber.value,
-            }).then(response => resultObj.innerHTML = JSON.stringify(response))
+            }).then(response => {resultObj.innerHTML = JSON.stringify(response)})
             .catch(error => {console.log(error.response)})
+        }
+
+        function addCategory()
+        {
+            event.preventDefault();
+
+            let nameObj = document.querySelector("#nameCategory");
+
+            axios.post('/api/categories', {
+                name: nameObj.value,
+            }).then(response => {resultObj.innerHTML = JSON.stringify(response)})
+            .catch(error => {console.log(error.response)});
         }
     </script>
 </body>

@@ -72,7 +72,7 @@ Route::middleware('auth:sanctum')->group(function(){
     
     });
     
-    Route::prefix('categories')->group(function(){
+    Route::prefix('api/categories')->group(function(){
     
         Route::get('/', [CategoryControllerAPI::class, 'index']);
     

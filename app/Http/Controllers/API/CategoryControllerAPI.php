@@ -12,21 +12,13 @@ class CategoryControllerAPI extends BaseController
     public $user;
 
     /**
-     * Get the user auth details
-     */
-    public function __construct()
-    {
-        $this->user = auth('api')->user();
-    }
-
-    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $categories = $this->user->categories;
+        $categories = auth()->user()->categories;
 
         return $this->sendResponse($categories, 'Data retrieved successfully');
     }
@@ -53,7 +45,7 @@ class CategoryControllerAPI extends BaseController
             'name' => 'required',
         ]);
 
-        $category = $this->user->categories()->create($validatedData);
+        $category = auth()->user()->categories()->create($validatedData);
         $slug = Str::slug($request->name . ' ' . $category->id, '-');
         $category->slug = $slug;
         $category->save();
@@ -69,10 +61,10 @@ class CategoryControllerAPI extends BaseController
      */
     public function show($category)
     {
-        $category = $this->user->categories()->where('slug', $category)->first();
+        $category = auth()->user()->categories()->where('slug', $category)->first();
 
         if(! $category){
-            return $this->categoryNotFoundResponse();
+            return $this->resourceNotFoundResponse('category');
         }
 
         return $this->sendResponse($category, 'Data retrieved successfully');
@@ -102,10 +94,10 @@ class CategoryControllerAPI extends BaseController
             'name' => 'required',
         ]);
 
-        $category = $this->user->categories()->where('slug', $category)->first();
+        $category = auth()->user()->categories()->where('slug', $category)->first();
 
         if(! $category){
-            return $this->categoryNotFoundResponse();
+            return $this->resourceNotFoundResponse('category');
         }
 
         $category->update($validatedData);
@@ -123,21 +115,14 @@ class CategoryControllerAPI extends BaseController
      */
     public function destroy($category)
     {
-        $category = $this->user->categories()->where('slug', $category)->first();
+        $category = auth()->user()->categories()->where('slug', $category)->first();
 
         if(! $category){
-            return $this->categoryNotFoundResponse();
+            return $this->resourceNotFoundResponse('category');
         }
 
         $category->delete();
 
         return $this->sendResponse([], 'Category deleted successfully');
-    }
-
-    // peripheral methods
-
-    private function categoryNotFoundResponse()
-    {
-        return $this->sendError('Not Found', ['error' => 'The specified category wasn\'t found'], 404);
     }
 }
