@@ -1,0 +1,39 @@
+html body {
+  overflow: unset;
+}
+
+thead tr th.text-truncate,
+tbody tr td.text-truncate {
+  max-width: 100px !important;
+  overflow: hidden !important;
+}
+
+@media (max-width: 1220px) {
+  .bank-name {
+    display: none;
+  }
+}
+
+@media (max-width: 1104px) {
+  .user-id {
+    display: none;
+  }
+}
+
+@media (max-width: 800px) {
+  .email {
+    display: none;
+  }
+}
+
+@media (max-width: 650px) {
+  .account-name {
+    display: none;
+  }
+}
+
+@media (max-width: 492px) {
+  .account-number {
+    display: none;
+  }
+}
