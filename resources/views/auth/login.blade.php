@@ -28,6 +28,8 @@
     
     
     <script>
+        axios.get('/sanctum/csrf-cookie');
+        
         var vm = new Vue({
             el: '#vue',
             data: {
