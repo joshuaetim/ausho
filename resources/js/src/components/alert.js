@@ -27,8 +27,13 @@ const AlertComponent = ({
 }) => {
   let messages = [];
 
-  if (alert.type === "danger") {
+  if (alert?.message?.length && alert.type === "danger") {
     messages = Object.values(alert?.message).map(i => i[0]);
+  }
+
+  if (!alert?.message) {
+    alert.message = alert?.title;
+    alert.title = "Server Error";
   }
 
   return (

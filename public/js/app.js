@@ -65918,7 +65918,7 @@ var Icon = function Icon(_ref) {
 };
 
 var AlertComponent = function AlertComponent(_ref2) {
-  var _messages;
+  var _alert$message, _messages;
 
   var alert = _ref2.alert,
       handleHide = _ref2.handleHide,
@@ -65928,10 +65928,15 @@ var AlertComponent = function AlertComponent(_ref2) {
       type = _ref2$type === void 0 ? "success" : _ref2$type;
   var messages = [];
 
-  if (alert.type === "danger") {
+  if (alert !== null && alert !== void 0 && (_alert$message = alert.message) !== null && _alert$message !== void 0 && _alert$message.length && alert.type === "danger") {
     messages = Object.values(alert === null || alert === void 0 ? void 0 : alert.message).map(function (i) {
       return i[0];
     });
+  }
+
+  if (!(alert !== null && alert !== void 0 && alert.message)) {
+    alert.message = alert === null || alert === void 0 ? void 0 : alert.title;
+    alert.title = "Server Error";
   }
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modal__WEBPACK_IMPORTED_MODULE_3__["default"], {

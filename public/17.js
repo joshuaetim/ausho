@@ -30,7 +30,8 @@ __webpack_require__.r(__webpack_exports__);
 var ConfirmDelete = function ConfirmDelete(_ref) {
   var show = _ref.show,
       toggle = _ref.toggle,
-      deleteInvestor = _ref.deleteInvestor;
+      deleteInvestor = _ref.deleteInvestor,
+      permanentDeleteInvestor = _ref.permanentDeleteInvestor;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_modal__WEBPACK_IMPORTED_MODULE_3__["default"], {
     size: "sm",
     show: show,
@@ -48,11 +49,7 @@ var ConfirmDelete = function ConfirmDelete(_ref) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_button__WEBPACK_IMPORTED_MODULE_4__["default"], {
     fullWidth: true,
     variant: "danger",
-    onClick: function onClick() {
-      return deleteInvestor({
-        force: true
-      });
-    }
+    onClick: permanentDeleteInvestor
   }, "Permanently Delete")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_col__WEBPACK_IMPORTED_MODULE_2__["default"], {
     className: "mt-2 mt-sm-0",
     width: 12,
@@ -60,9 +57,7 @@ var ConfirmDelete = function ConfirmDelete(_ref) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_button__WEBPACK_IMPORTED_MODULE_4__["default"], {
     className: "text-red",
     fullWidth: true,
-    onClick: function onClick() {
-      return deleteInvestor();
-    }
+    onClick: deleteInvestor
   }, "Safe Delete")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_col__WEBPACK_IMPORTED_MODULE_2__["default"], {
     width: 12,
     className: "mt-2"
@@ -435,54 +430,6 @@ var Investor = function Investor() {
 
 /***/ }),
 
-/***/ "./resources/js/src/components/col.js":
-/*!********************************************!*\
-  !*** ./resources/js/src/components/col.js ***!
-  \********************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
-
-function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
-
-
-
-var Col = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.forwardRef(function (_ref, ref) {
-  var _cn;
-
-  var as = _ref.as,
-      sm = _ref.sm,
-      md = _ref.md,
-      lg = _ref.lg,
-      xl = _ref.xl,
-      width = _ref.width,
-      alignSelf = _ref.alignSelf,
-      className = _ref.className,
-      props = _objectWithoutProperties(_ref, ["as", "sm", "md", "lg", "xl", "width", "alignSelf", "className"]);
-
-  var Component = as || "div";
-  var classes = classnames__WEBPACK_IMPORTED_MODULE_1___default()("col", (_cn = {}, _defineProperty(_cn, "col-sm-".concat(sm), sm), _defineProperty(_cn, "col-md-".concat(md), md), _defineProperty(_cn, "col-lg-".concat(lg), lg), _defineProperty(_cn, "col-lg-".concat(xl), xl), _defineProperty(_cn, "col-".concat(width), width), _defineProperty(_cn, "align-self-".concat(alignSelf), alignSelf), _cn), className);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Component, _extends({
-    ref: ref
-  }, props, {
-    className: classes
-  }));
-});
-/* harmony default export */ __webpack_exports__["default"] = (Col);
-
-/***/ }),
-
 /***/ "./resources/js/src/components/modal-footer.js":
 /*!*****************************************************!*\
   !*** ./resources/js/src/components/modal-footer.js ***!
@@ -507,10 +454,10 @@ var ModalFooter = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.forw
 
 /***/ }),
 
-/***/ "./resources/js/src/components/row.js":
-/*!********************************************!*\
-  !*** ./resources/js/src/components/row.js ***!
-  \********************************************/
+/***/ "./resources/js/src/icons/alert-triangle.js":
+/*!**************************************************!*\
+  !*** ./resources/js/src/icons/alert-triangle.js ***!
+  \**************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -520,44 +467,43 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
-
-function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
 
 
-var Row = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.forwardRef(function (_ref, ref) {
+var AlertTriangle = function AlertTriangle(_ref) {
   var _cn;
 
-  var deck = _ref.deck,
-      cards = _ref.cards,
-      align = _ref.align,
-      className = _ref.className,
-      props = _objectWithoutProperties(_ref, ["deck", "cards", "align", "className"]);
-
-  var classes = classnames__WEBPACK_IMPORTED_MODULE_1___default()("row", (_cn = {}, _defineProperty(_cn, "row-deck", deck), _defineProperty(_cn, "row-cards", cards), _defineProperty(_cn, "align-items-".concat(align), align), _cn), className);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", _extends({
-    ref: ref
-  }, props, {
-    className: classes
+  var _ref$size = _ref.size,
+      size = _ref$size === void 0 ? "lg" : _ref$size,
+      _ref$color = _ref.color,
+      color = _ref$color === void 0 ? "danger" : _ref$color,
+      className = _ref.className;
+  var classes = classnames__WEBPACK_IMPORTED_MODULE_1___default()("icon", "mb-3", (_cn = {}, _defineProperty(_cn, "icon-".concat(size), size), _defineProperty(_cn, "text-".concat(color), color), _cn), className);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+    width: "24",
+    height: "24",
+    fill: "none",
+    strokeWidth: "2",
+    className: classes,
+    viewBox: "0 0 24 24",
+    stroke: "currentColor",
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    xmlns: "http://www.w3.org/2000/svg"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+    stroke: "none",
+    d: "M0 0h24v24H0z",
+    fill: "none"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+    d: "M12 9v2m0 4v.01"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+    d: "M5 19h14a2 2 0 0 0 1.84 -2.75l-7.1 -12.25a2 2 0 0 0 -3.5 0l-7.1 12.25a2 2 0 0 0 1.75 2.75"
   }));
-});
-/* harmony default export */ __webpack_exports__["default"] = (Row);
+};
 
-/***/ }),
-
-/***/ "./resources/js/src/store/api/investors.js":
-/*!*************************************************!*\
-  !*** ./resources/js/src/store/api/investors.js ***!
-  \*************************************************/
-/*! exports provided: useFetchAllInvestors, useFetchInvestor, useUpdateInvestor, useDeleteInvestor, useCreateInvestor */
-/***/ (function(module, exports) {
-
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /home/arpeiks/career/josh/ausho/resources/js/src/store/api/investors.js: 'import' and 'export' may only appear at the top level (122:0)\n\n\u001b[0m \u001b[90m 120 | \u001b[39m  })\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 121 | \u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 122 | \u001b[39m\u001b[36mexport\u001b[39m \u001b[36mfunction\u001b[39m usePermanentDeleteInvestor(slug) {\u001b[0m\n\u001b[0m \u001b[90m     | \u001b[39m\u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 123 | \u001b[39m  \u001b[36mconst\u001b[39m history \u001b[33m=\u001b[39m useHistory()\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 124 | \u001b[39m  \u001b[36mconst\u001b[39m dispatch \u001b[33m=\u001b[39m useDispatch()\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 125 | \u001b[39m  \u001b[36mconst\u001b[39m queryClient \u001b[33m=\u001b[39m useQueryClient()\u001b[33m;\u001b[39m\u001b[0m\n    at Object._raise (/home/arpeiks/career/josh/ausho/node_modules/@babel/parser/lib/index.js:748:17)\n    at Object.raiseWithData (/home/arpeiks/career/josh/ausho/node_modules/@babel/parser/lib/index.js:741:17)\n    at Object.raise (/home/arpeiks/career/josh/ausho/node_modules/@babel/parser/lib/index.js:735:17)\n    at Object.parseStatementContent (/home/arpeiks/career/josh/ausho/node_modules/@babel/parser/lib/index.js:11769:18)\n    at Object.parseStatement (/home/arpeiks/career/josh/ausho/node_modules/@babel/parser/lib/index.js:11676:17)\n    at Object.parseBlockOrModuleBlockBody (/home/arpeiks/career/josh/ausho/node_modules/@babel/parser/lib/index.js:12258:25)\n    at Object.parseBlockBody (/home/arpeiks/career/josh/ausho/node_modules/@babel/parser/lib/index.js:12249:10)\n    at Object.parseBlock (/home/arpeiks/career/josh/ausho/node_modules/@babel/parser/lib/index.js:12233:10)\n    at Object.parseFunctionBody (/home/arpeiks/career/josh/ausho/node_modules/@babel/parser/lib/index.js:11221:24)\n    at Object.parseFunctionBodyAndFinish (/home/arpeiks/career/josh/ausho/node_modules/@babel/parser/lib/index.js:11205:10)\n    at /home/arpeiks/career/josh/ausho/node_modules/@babel/parser/lib/index.js:12391:12\n    at Object.withTopicForbiddingContext (/home/arpeiks/career/josh/ausho/node_modules/@babel/parser/lib/index.js:11516:14)\n    at Object.parseFunction (/home/arpeiks/career/josh/ausho/node_modules/@babel/parser/lib/index.js:12390:10)\n    at Object.parseFunctionStatement (/home/arpeiks/career/josh/ausho/node_modules/@babel/parser/lib/index.js:12024:17)\n    at Object.parseStatementContent (/home/arpeiks/career/josh/ausho/node_modules/@babel/parser/lib/index.js:11714:21)\n    at Object.parseStatement (/home/arpeiks/career/josh/ausho/node_modules/@babel/parser/lib/index.js:11676:17)\n    at Object.parseExportDeclaration (/home/arpeiks/career/josh/ausho/node_modules/@babel/parser/lib/index.js:12892:17)\n    at Object.maybeParseExportDeclaration (/home/arpeiks/career/josh/ausho/node_modules/@babel/parser/lib/index.js:12848:31)\n    at Object.parseExport (/home/arpeiks/career/josh/ausho/node_modules/@babel/parser/lib/index.js:12786:29)\n    at Object.parseStatementContent (/home/arpeiks/career/josh/ausho/node_modules/@babel/parser/lib/index.js:11782:27)\n    at Object.parseStatement (/home/arpeiks/career/josh/ausho/node_modules/@babel/parser/lib/index.js:11676:17)\n    at Object.parseBlockOrModuleBlockBody (/home/arpeiks/career/josh/ausho/node_modules/@babel/parser/lib/index.js:12258:25)\n    at Object.parseBlockBody (/home/arpeiks/career/josh/ausho/node_modules/@babel/parser/lib/index.js:12249:10)\n    at Object.parseTopLevel (/home/arpeiks/career/josh/ausho/node_modules/@babel/parser/lib/index.js:11607:10)\n    at Object.parse (/home/arpeiks/career/josh/ausho/node_modules/@babel/parser/lib/index.js:13415:10)\n    at parse (/home/arpeiks/career/josh/ausho/node_modules/@babel/parser/lib/index.js:13468:38)\n    at parser (/home/arpeiks/career/josh/ausho/node_modules/@babel/core/lib/parser/index.js:54:34)\n    at parser.next (<anonymous>)\n    at normalizeFile (/home/arpeiks/career/josh/ausho/node_modules/@babel/core/lib/transformation/normalize-file.js:99:38)\n    at normalizeFile.next (<anonymous>)\n    at run (/home/arpeiks/career/josh/ausho/node_modules/@babel/core/lib/transformation/index.js:31:50)\n    at run.next (<anonymous>)\n    at Function.transform (/home/arpeiks/career/josh/ausho/node_modules/@babel/core/lib/transform.js:27:41)\n    at transform.next (<anonymous>)\n    at step (/home/arpeiks/career/josh/ausho/node_modules/gensync/index.js:261:32)\n    at /home/arpeiks/career/josh/ausho/node_modules/gensync/index.js:273:13");
+/* harmony default export */ __webpack_exports__["default"] = (AlertTriangle);
 
 /***/ })
 
