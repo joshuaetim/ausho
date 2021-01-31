@@ -1,5 +1,56 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[13],{
 
+/***/ "./resources/js/src/admin/pages/investor/confirm-delete.js":
+/*!*****************************************************************!*\
+  !*** ./resources/js/src/admin/pages/investor/confirm-delete.js ***!
+  \*****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _components_row__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../components/row */ "./resources/js/src/components/row.js");
+/* harmony import */ var _components_col__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../components/col */ "./resources/js/src/components/col.js");
+/* harmony import */ var _components_modal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../components/modal */ "./resources/js/src/components/modal.js");
+/* harmony import */ var _components_button__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../components/button */ "./resources/js/src/components/button.js");
+/* harmony import */ var _components_modal_body__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../components/modal-body */ "./resources/js/src/components/modal-body.js");
+/* harmony import */ var _icons_alert_triangle__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../icons/alert-triangle */ "./resources/js/src/icons/alert-triangle.js");
+/* harmony import */ var _components_modal_footer__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../components/modal-footer */ "./resources/js/src/components/modal-footer.js");
+
+
+
+
+
+
+
+
+
+var ConfirmDelete = function ConfirmDelete() {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_modal__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    size: "sm",
+    show: false,
+    centered: true
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_modal_body__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    className: "text-center py-4"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_icons_alert_triangle__WEBPACK_IMPORTED_MODULE_6__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Are you sure?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "text-muted"
+  }, "Do you really want to delete the investor?")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_modal_footer__WEBPACK_IMPORTED_MODULE_7__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "w-100"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_row__WEBPACK_IMPORTED_MODULE_1__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_col__WEBPACK_IMPORTED_MODULE_2__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_button__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    variant: "white",
+    fullWidth: true
+  }, "Cancel")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_col__WEBPACK_IMPORTED_MODULE_2__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_button__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    variant: "danger",
+    fullWidth: true
+  }, "Delete Investor"))))));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (ConfirmDelete);
+
+/***/ }),
+
 /***/ "./resources/js/src/admin/pages/investor/index.js":
 /*!********************************************************!*\
   !*** ./resources/js/src/admin/pages/investor/index.js ***!
@@ -34,15 +85,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_query__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-query */ "./node_modules/react-query/es/index.js");
 /* harmony import */ var _components_row__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../components/row */ "./resources/js/src/components/row.js");
 /* harmony import */ var _components_col__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../components/col */ "./resources/js/src/components/col.js");
-/* harmony import */ var _components_button__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../components/button */ "./resources/js/src/components/button.js");
-/* harmony import */ var _components_textfield__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../components/textfield */ "./resources/js/src/components/textfield.js");
-/* harmony import */ var _components_container__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../../components/container */ "./resources/js/src/components/container.js");
-/* harmony import */ var _store_api_investors__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../../store/api/investors */ "./resources/js/src/store/api/investors.js");
+/* harmony import */ var _confirm_delete__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./confirm-delete */ "./resources/js/src/admin/pages/investor/confirm-delete.js");
+/* harmony import */ var _components_button__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../components/button */ "./resources/js/src/components/button.js");
+/* harmony import */ var _components_textfield__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../../components/textfield */ "./resources/js/src/components/textfield.js");
+/* harmony import */ var _components_container__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../../components/container */ "./resources/js/src/components/container.js");
+/* harmony import */ var _store_api_investors__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../../store/api/investors */ "./resources/js/src/store/api/investors.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 
 
 
@@ -69,7 +122,7 @@ var Investor = function Investor() {
   var _useParams = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["useParams"])(),
       slug = _useParams.slug;
 
-  var _useFetchInvestor = Object(_store_api_investors__WEBPACK_IMPORTED_MODULE_11__["useFetchInvestor"])(slug),
+  var _useFetchInvestor = Object(_store_api_investors__WEBPACK_IMPORTED_MODULE_12__["useFetchInvestor"])(slug),
       fetchInvestor = _useFetchInvestor.refetch,
       isFetching = _useFetchInvestor.isFetching;
 
@@ -100,11 +153,11 @@ var Investor = function Investor() {
     return (i === null || i === void 0 ? void 0 : i.slug) === slug;
   });
 
-  var _useUpdateInvestor = Object(_store_api_investors__WEBPACK_IMPORTED_MODULE_11__["useUpdateInvestor"])(slug),
+  var _useUpdateInvestor = Object(_store_api_investors__WEBPACK_IMPORTED_MODULE_12__["useUpdateInvestor"])(slug),
       updating = _useUpdateInvestor.isLoading,
       updateInvestor = _useUpdateInvestor.mutateAsync;
 
-  var _useDeleteInvestor = Object(_store_api_investors__WEBPACK_IMPORTED_MODULE_11__["useDeleteInvestor"])(slug),
+  var _useDeleteInvestor = Object(_store_api_investors__WEBPACK_IMPORTED_MODULE_12__["useDeleteInvestor"])(slug),
       deleting = _useDeleteInvestor.isLoading,
       deleteInvestor = _useDeleteInvestor.mutateAsync;
 
@@ -117,6 +170,8 @@ var Investor = function Investor() {
     account_name: investor === null || investor === void 0 ? void 0 : investor.account_name,
     account_number: investor === null || investor === void 0 ? void 0 : investor.account_number
   };
+
+  var confirmDelete = function confirmDelete() {};
 
   var handleDelete = /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
@@ -172,7 +227,7 @@ var Investor = function Investor() {
   }();
 
   if (isFetching) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", null, "FETCHING");
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_components_container__WEBPACK_IMPORTED_MODULE_10__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_3__["Formik"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_components_container__WEBPACK_IMPORTED_MODULE_11__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_3__["Formik"], {
     onSubmit: handleUpdate,
     validationSchema: schema,
     initialValues: initialValues
@@ -189,7 +244,7 @@ var Investor = function Investor() {
       width: 12,
       sm: 6,
       md: 6
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_components_textfield__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_components_textfield__WEBPACK_IMPORTED_MODULE_10__["default"], {
       name: "name",
       label: "Name",
       value: values.name,
@@ -202,7 +257,7 @@ var Investor = function Investor() {
       width: 12,
       sm: 6,
       md: 6
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_components_textfield__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_components_textfield__WEBPACK_IMPORTED_MODULE_10__["default"], {
       type: "email",
       name: "email",
       onBlur: handleBlur,
@@ -216,7 +271,7 @@ var Investor = function Investor() {
       width: 12,
       sm: 6,
       md: 6
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_components_textfield__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_components_textfield__WEBPACK_IMPORTED_MODULE_10__["default"], {
       name: "phone",
       label: "Phone Number",
       onBlur: handleBlur,
@@ -229,7 +284,7 @@ var Investor = function Investor() {
       width: 12,
       sm: 6,
       md: 6
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_components_textfield__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_components_textfield__WEBPACK_IMPORTED_MODULE_10__["default"], {
       name: "bank",
       label: "Bank Name",
       onBlur: handleBlur,
@@ -242,7 +297,7 @@ var Investor = function Investor() {
       width: 12,
       sm: 6,
       md: 6
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_components_textfield__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_components_textfield__WEBPACK_IMPORTED_MODULE_10__["default"], {
       name: "account_name",
       onBlur: handleBlur,
       label: "Account Name",
@@ -255,7 +310,7 @@ var Investor = function Investor() {
       width: 12,
       sm: 6,
       md: 6
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_components_textfield__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_components_textfield__WEBPACK_IMPORTED_MODULE_10__["default"], {
       onBlur: handleBlur,
       name: "account_number",
       label: "Account Number",
@@ -268,7 +323,7 @@ var Investor = function Investor() {
       width: 12,
       sm: 12,
       md: 6
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_components_textfield__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_components_textfield__WEBPACK_IMPORTED_MODULE_10__["default"], {
       rows: 3,
       as: "textarea",
       name: "address",
@@ -284,22 +339,22 @@ var Investor = function Investor() {
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_components_col__WEBPACK_IMPORTED_MODULE_7__["default"], {
       width: 12,
       sm: 3
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_components_button__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_components_button__WEBPACK_IMPORTED_MODULE_9__["default"], {
       fullWidth: true,
       type: "button",
       variant: "danger",
       isLoading: deleting,
-      onClick: handleDelete
+      onClick: confirmDelete
     }, "Delete")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_components_col__WEBPACK_IMPORTED_MODULE_7__["default"], {
       width: 12,
       sm: 3
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_components_button__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_components_button__WEBPACK_IMPORTED_MODULE_9__["default"], {
       fullWidth: true,
       type: "submit",
       variant: "primary",
       isLoading: updating
     }, "Update Investor")))));
-  }));
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_confirm_delete__WEBPACK_IMPORTED_MODULE_8__["default"], null));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Investor);
@@ -351,6 +406,30 @@ var Col = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.forwardRef(f
   }));
 });
 /* harmony default export */ __webpack_exports__["default"] = (Col);
+
+/***/ }),
+
+/***/ "./resources/js/src/components/modal-footer.js":
+/*!*****************************************************!*\
+  !*** ./resources/js/src/components/modal-footer.js ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+
+var ModalFooter = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.forwardRef(function (props, ref) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", _extends({}, props, {
+    ref: ref,
+    className: "modal-footer"
+  }));
+});
+/* harmony default export */ __webpack_exports__["default"] = (ModalFooter);
 
 /***/ }),
 
