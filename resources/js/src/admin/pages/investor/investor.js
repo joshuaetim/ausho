@@ -45,6 +45,7 @@ const schema = Yup.object({
 
 const Investor = () => {
   const { slug } = useParams();
+  const [deleteModal, setDeleteModal] = React.useState(false);
   const { refetch: fetchInvestor, isFetching } = useFetchInvestor(slug);
   const investors = useQueryClient().getQueryData("investors");
 
@@ -75,10 +76,12 @@ const Investor = () => {
     account_number: investor?.account_number
   };
 
-  const confirmDelete = () => {};
-
-  const handleDelete = async () => await deleteInvestor(slug);
+  const toggleDeleteModal = () => setDeleteModal(!deleteModal);
   const handleUpdate = async values => await updateInvestor({ slug, values });
+  const handleDelete = async () => {
+    toggleDeleteModal();
+    await deleteInvestor(slug);
+  };
 
   if (isFetching) return <h1>FETCHING</h1>;
 
@@ -194,7 +197,7 @@ const Investor = () => {
                       type="button"
                       variant="danger"
                       isLoading={deleting}
-                      onClick={confirmDelete}
+                      onClick={toggleDeleteModal}
                     >
                       Delete
                     </Button>
@@ -216,7 +219,11 @@ const Investor = () => {
         </Formik>
       </Container>
 
-      <ConfirmDelete />
+      <ConfirmDelete
+        show={deleteModal}
+        toggle={toggleDeleteModal}
+        deleteInvestor={handleDelete}
+      />
     </>
   );
 };

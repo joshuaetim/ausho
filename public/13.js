@@ -27,11 +27,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var ConfirmDelete = function ConfirmDelete() {
+var ConfirmDelete = function ConfirmDelete(_ref) {
+  var show = _ref.show,
+      toggle = _ref.toggle,
+      deleteInvestor = _ref.deleteInvestor;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_modal__WEBPACK_IMPORTED_MODULE_3__["default"], {
     size: "sm",
-    show: false,
-    centered: true
+    show: show,
+    centered: true,
+    onHide: toggle
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_modal_body__WEBPACK_IMPORTED_MODULE_5__["default"], {
     className: "text-center py-4"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_icons_alert_triangle__WEBPACK_IMPORTED_MODULE_6__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Are you sure?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -40,10 +44,12 @@ var ConfirmDelete = function ConfirmDelete() {
     className: "w-100"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_row__WEBPACK_IMPORTED_MODULE_1__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_col__WEBPACK_IMPORTED_MODULE_2__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_button__WEBPACK_IMPORTED_MODULE_4__["default"], {
     variant: "white",
-    fullWidth: true
+    fullWidth: true,
+    onClick: toggle
   }, "Cancel")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_col__WEBPACK_IMPORTED_MODULE_2__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_button__WEBPACK_IMPORTED_MODULE_4__["default"], {
     variant: "danger",
-    fullWidth: true
+    fullWidth: true,
+    onClick: deleteInvestor
   }, "Delete Investor"))))));
 };
 
@@ -96,6 +102,18 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -121,6 +139,11 @@ var schema = yup__WEBPACK_IMPORTED_MODULE_2__["object"]({
 var Investor = function Investor() {
   var _useParams = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["useParams"])(),
       slug = _useParams.slug;
+
+  var _React$useState = react__WEBPACK_IMPORTED_MODULE_1___default.a.useState(false),
+      _React$useState2 = _slicedToArray(_React$useState, 2),
+      deleteModal = _React$useState2[0],
+      setDeleteModal = _React$useState2[1];
 
   var _useFetchInvestor = Object(_store_api_investors__WEBPACK_IMPORTED_MODULE_12__["useFetchInvestor"])(slug),
       fetchInvestor = _useFetchInvestor.refetch,
@@ -171,16 +194,21 @@ var Investor = function Investor() {
     account_number: investor === null || investor === void 0 ? void 0 : investor.account_number
   };
 
-  var confirmDelete = function confirmDelete() {};
+  var toggleDeleteModal = function toggleDeleteModal() {
+    return setDeleteModal(!deleteModal);
+  };
 
-  var handleDelete = /*#__PURE__*/function () {
-    var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+  var handleUpdate = /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(values) {
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
               _context2.next = 2;
-              return deleteInvestor(slug);
+              return updateInvestor({
+                slug: slug,
+                values: values
+              });
 
             case 2:
               return _context2.abrupt("return", _context2.sent);
@@ -193,25 +221,20 @@ var Investor = function Investor() {
       }, _callee2);
     }));
 
-    return function handleDelete() {
+    return function handleUpdate(_x) {
       return _ref2.apply(this, arguments);
     };
   }();
 
-  var handleUpdate = /*#__PURE__*/function () {
-    var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(values) {
+  var handleDelete = /*#__PURE__*/function () {
+    var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
-              _context3.next = 2;
-              return updateInvestor({
-                slug: slug,
-                values: values
-              });
-
-            case 2:
-              return _context3.abrupt("return", _context3.sent);
+              toggleDeleteModal();
+              _context3.next = 3;
+              return deleteInvestor(slug);
 
             case 3:
             case "end":
@@ -221,7 +244,7 @@ var Investor = function Investor() {
       }, _callee3);
     }));
 
-    return function handleUpdate(_x) {
+    return function handleDelete() {
       return _ref3.apply(this, arguments);
     };
   }();
@@ -344,7 +367,7 @@ var Investor = function Investor() {
       type: "button",
       variant: "danger",
       isLoading: deleting,
-      onClick: confirmDelete
+      onClick: toggleDeleteModal
     }, "Delete")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_components_col__WEBPACK_IMPORTED_MODULE_7__["default"], {
       width: 12,
       sm: 3
@@ -354,7 +377,11 @@ var Investor = function Investor() {
       variant: "primary",
       isLoading: updating
     }, "Update Investor")))));
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_confirm_delete__WEBPACK_IMPORTED_MODULE_8__["default"], null));
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_confirm_delete__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    show: deleteModal,
+    toggle: toggleDeleteModal,
+    deleteInvestor: handleDelete
+  }));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Investor);

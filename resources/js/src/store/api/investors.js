@@ -1,4 +1,5 @@
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { useQuery, useMutation, useQueryClient } from "react-query";
 
 async function createInvestor(values) {
@@ -94,6 +95,7 @@ export function useUpdateInvestor(slug) {
 }
 
 export function useDeleteInvestor(slug) {
+  const history = useHistory();
   const dispatch = useDispatch();
   const queryClient = useQueryClient();
 
@@ -101,6 +103,7 @@ export function useDeleteInvestor(slug) {
     onError: error => dispatch({ type: "ERROR", error }),
     onSuccess: async data => {
       dispatch({ type: "SUCCESS", data });
+      history.push("/investors");
 
       const investors = queryClient.getQueryData("investors");
       if (!investors?.length) return;

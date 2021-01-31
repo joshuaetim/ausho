@@ -17,12 +17,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var react_query__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-query */ "./node_modules/react-query/es/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_query__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-query */ "./node_modules/react-query/es/index.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 
 
 
@@ -263,11 +265,11 @@ function _fetchAllInvestors() {
 }
 
 function useFetchAllInvestors() {
-  return Object(react_query__WEBPACK_IMPORTED_MODULE_2__["useQuery"])("investors", fetchAllInvestors);
+  return Object(react_query__WEBPACK_IMPORTED_MODULE_3__["useQuery"])("investors", fetchAllInvestors);
 }
 function useFetchInvestor(slug) {
-  var queryClient = Object(react_query__WEBPACK_IMPORTED_MODULE_2__["useQueryClient"])();
-  return Object(react_query__WEBPACK_IMPORTED_MODULE_2__["useQuery"])(["investor", slug], function () {
+  var queryClient = Object(react_query__WEBPACK_IMPORTED_MODULE_3__["useQueryClient"])();
+  return Object(react_query__WEBPACK_IMPORTED_MODULE_3__["useQuery"])(["investor", slug], function () {
     return fetchInvestor(slug);
   }, {
     enabled: false,
@@ -303,8 +305,8 @@ function useFetchInvestor(slug) {
 }
 function useUpdateInvestor(slug) {
   var dispatch = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useDispatch"])();
-  var queryClient = Object(react_query__WEBPACK_IMPORTED_MODULE_2__["useQueryClient"])();
-  return Object(react_query__WEBPACK_IMPORTED_MODULE_2__["useMutation"])(updateInvestor, {
+  var queryClient = Object(react_query__WEBPACK_IMPORTED_MODULE_3__["useQueryClient"])();
+  return Object(react_query__WEBPACK_IMPORTED_MODULE_3__["useMutation"])(updateInvestor, {
     onError: function onError(error) {
       return dispatch({
         type: "ERROR",
@@ -356,9 +358,10 @@ function useUpdateInvestor(slug) {
   });
 }
 function useDeleteInvestor(slug) {
+  var history = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["useHistory"])();
   var dispatch = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useDispatch"])();
-  var queryClient = Object(react_query__WEBPACK_IMPORTED_MODULE_2__["useQueryClient"])();
-  return Object(react_query__WEBPACK_IMPORTED_MODULE_2__["useMutation"])(deleteInvestor, {
+  var queryClient = Object(react_query__WEBPACK_IMPORTED_MODULE_3__["useQueryClient"])();
+  return Object(react_query__WEBPACK_IMPORTED_MODULE_3__["useMutation"])(deleteInvestor, {
     onError: function onError(error) {
       return dispatch({
         type: "ERROR",
@@ -376,23 +379,24 @@ function useDeleteInvestor(slug) {
                   type: "SUCCESS",
                   data: data
                 });
+                history.push("/investors");
                 investors = queryClient.getQueryData("investors");
 
                 if (investors !== null && investors !== void 0 && investors.length) {
-                  _context3.next = 4;
+                  _context3.next = 5;
                   break;
                 }
 
                 return _context3.abrupt("return");
 
-              case 4:
+              case 5:
                 update = investors === null || investors === void 0 ? void 0 : investors.filter(function (item) {
                   return item.slug !== slug;
                 });
-                _context3.next = 7;
+                _context3.next = 8;
                 return queryClient.setQueryData("investors", update);
 
-              case 7:
+              case 8:
               case "end":
                 return _context3.stop();
             }
@@ -410,8 +414,8 @@ function useDeleteInvestor(slug) {
 }
 function useCreateInvestor() {
   var dispatch = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useDispatch"])();
-  var queryClient = Object(react_query__WEBPACK_IMPORTED_MODULE_2__["useQueryClient"])();
-  return Object(react_query__WEBPACK_IMPORTED_MODULE_2__["useMutation"])(createInvestor, {
+  var queryClient = Object(react_query__WEBPACK_IMPORTED_MODULE_3__["useQueryClient"])();
+  return Object(react_query__WEBPACK_IMPORTED_MODULE_3__["useMutation"])(createInvestor, {
     onError: function onError(error) {
       return dispatch({
         type: "ERROR",
