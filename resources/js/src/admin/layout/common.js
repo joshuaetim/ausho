@@ -1,6 +1,7 @@
 import React from "react";
 
 import AppIcon from "../../icons/apps";
+import UserPlusIcon from "../../icons/user-plus";
 import NavDropdown from "../../components/nav-dropdown";
 import DropdownItem from "../../components/dropdown-item";
 import CreateInvestor from "../../modals/create-investor";
@@ -12,7 +13,7 @@ export const Apps = ({ color = "dark" }) => {
 
   return (
     <NavDropdown card tChildren={<AppIcon />}>
-      <DropdownItem onClick={toggle} icon={<AppIcon color={color} />}>
+      <DropdownItem onClick={toggle} icon={<UserPlusIcon color={color} />}>
         Create Investor
       </DropdownItem>
 

@@ -37,3 +37,7 @@ tbody tr td.text-truncate {
     display: none;
   }
 }
+
+.cursor-pointer {
+  cursor: pointer;
+}

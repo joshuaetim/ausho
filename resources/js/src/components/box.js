@@ -5,6 +5,7 @@ const Box = React.forwardRef(
   (
     {
       as,
+      bg,
       mt,
       mb,
       flex,
@@ -12,8 +13,10 @@ const Box = React.forwardRef(
       muted,
       center,
       justify,
+      flexGrow,
       fullHeight,
       className,
+      direction,
       ...props
     },
     ref
@@ -25,10 +28,13 @@ const Box = React.forwardRef(
         "d-flex": flex,
         [`mt-${mt}`]: mt,
         [`mb-${mb}`]: mb,
+        [`bg-${bg}`]: bg,
         "text-muted": muted,
         "text-center": center,
         "min-vh-100": fullHeight,
+        [`flex-grow-1`]: flexGrow,
         [`align-items-${align}`]: align,
+        [`flex-${direction}`]: direction,
         [`justify-content-${justify}`]: justify
       },
       className

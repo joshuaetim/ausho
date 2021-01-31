@@ -27,6 +27,7 @@ var Box = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.forwardRef(f
   var _cn;
 
   var as = _ref.as,
+      bg = _ref.bg,
       mt = _ref.mt,
       mb = _ref.mb,
       flex = _ref.flex,
@@ -34,14 +35,16 @@ var Box = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.forwardRef(f
       muted = _ref.muted,
       center = _ref.center,
       justify = _ref.justify,
+      flexGrow = _ref.flexGrow,
       fullHeight = _ref.fullHeight,
       className = _ref.className,
-      props = _objectWithoutProperties(_ref, ["as", "mt", "mb", "flex", "align", "muted", "center", "justify", "fullHeight", "className"]);
+      direction = _ref.direction,
+      props = _objectWithoutProperties(_ref, ["as", "bg", "mt", "mb", "flex", "align", "muted", "center", "justify", "flexGrow", "fullHeight", "className", "direction"]);
 
   var Component = as || "div";
   var classes = classnames__WEBPACK_IMPORTED_MODULE_1___default()((_cn = {
     "d-flex": flex
-  }, _defineProperty(_cn, "mt-".concat(mt), mt), _defineProperty(_cn, "mb-".concat(mb), mb), _defineProperty(_cn, "text-muted", muted), _defineProperty(_cn, "text-center", center), _defineProperty(_cn, "min-vh-100", fullHeight), _defineProperty(_cn, "align-items-".concat(align), align), _defineProperty(_cn, "justify-content-".concat(justify), justify), _cn), className);
+  }, _defineProperty(_cn, "mt-".concat(mt), mt), _defineProperty(_cn, "mb-".concat(mb), mb), _defineProperty(_cn, "bg-".concat(bg), bg), _defineProperty(_cn, "text-muted", muted), _defineProperty(_cn, "text-center", center), _defineProperty(_cn, "min-vh-100", fullHeight), _defineProperty(_cn, "flex-grow-1", flexGrow), _defineProperty(_cn, "align-items-".concat(align), align), _defineProperty(_cn, "flex-".concat(direction), direction), _defineProperty(_cn, "justify-content-".concat(justify), justify), _cn), className);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Component, _extends({
     ref: ref
   }, props, {
@@ -94,6 +97,48 @@ var Button = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.forwardRe
   }));
 });
 /* harmony default export */ __webpack_exports__["default"] = (Button);
+
+/***/ }),
+
+/***/ "./resources/js/src/components/container.js":
+/*!**************************************************!*\
+  !*** ./resources/js/src/components/container.js ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+
+
+
+var Container = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.forwardRef(function (_ref, ref) {
+  var as = _ref.as,
+      flex = _ref.flex,
+      fluid = _ref.fluid,
+      className = _ref.className,
+      props = _objectWithoutProperties(_ref, ["as", "flex", "fluid", "className"]);
+
+  var Component = as || "div";
+  var suffix = typeof fluid === "string" ? "-".concat(fluid) : "-fluid";
+  var classes = classnames__WEBPACK_IMPORTED_MODULE_1___default()(className, "container".concat(suffix), _defineProperty({}, "d-flex", flex));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Component, _extends({
+    ref: ref,
+    className: classes
+  }, props));
+});
+/* harmony default export */ __webpack_exports__["default"] = (Container);
 
 /***/ }),
 

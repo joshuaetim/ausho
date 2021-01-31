@@ -3,21 +3,26 @@ import { useHistory } from "react-router-dom";
 
 import Card from "../../../components/card";
 import Table from "../../../components/table";
+import NoData from "../../../components/no-data";
+import Container from "../../../components/container";
 import { useFetchAllInvestors } from "../../../store/api/investors";
 
 const Investors = () => {
-  const { data: investors, isLoading } = useFetchAllInvestors();
+  const { data: investors, isError, isLoading } = useFetchAllInvestors();
 
-  console.log(investors);
+  if (isError) return <h1>Error</h1>;
   if (isLoading) return <h1>Loading</h1>;
+  if (investors && investors?.length === 0) return <NoData />;
 
   return (
-    <Card>
-      <Table card center nowrap datatable>
-        <Header />
-        <Body data={investors?.data} />
-      </Table>
-    </Card>
+    <Container>
+      <Card>
+        <Table card center nowrap datatable>
+          <Header />
+          <Body data={investors} />
+        </Table>
+      </Card>
+    </Container>
   );
 };
 
@@ -40,7 +45,10 @@ const Rows = ({ data }) => {
   const history = useHistory();
 
   return (
-    <tr onClick={() => history.push(`/investor/${data?.slug}`)}>
+    <tr
+      className="cursor-pointer"
+      onClick={() => history.push(`/investor/${data?.slug}`)}
+    >
       <td className="w-1 id">{data?.id}</td>
       <td className="w-1 user-id">{data?.user_id}</td>
       <td className="py-3 text-truncate">{data?.name}</td>

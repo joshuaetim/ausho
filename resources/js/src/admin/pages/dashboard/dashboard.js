@@ -1,6 +1,7 @@
 import React from "react";
 
 import Row from "../../../components/row";
+import Container from "../../../components/container";
 
 const Stats = React.lazy(() => import("./components/stats"));
 const Payments = React.lazy(() => import("./components/payments"));
@@ -9,12 +10,14 @@ const Investments = React.lazy(() => import("./components/investments"));
 
 const Dashboard = () => {
   return (
-    <Row cards deck>
-      <Stats />
-      <Activities />
-      <Investments />
-      <Payments />
-    </Row>
+    <Container>
+      <Row cards deck>
+        <Stats />
+        <Activities />
+        {/* <Investments />
+        <Payments /> */}
+      </Row>
+    </Container>
   );
 };
 

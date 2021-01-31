@@ -13,13 +13,13 @@ import ModalHeader from "../components/modal-header";
 import { useCreateInvestor } from "../store/api/investors";
 
 const values = {
-  name: "",
-  email: "",
-  phone: "",
-  address: "",
-  bank: "",
-  account_name: "",
-  account_number: ""
+  name: "Oluwasegun Victor",
+  email: "arpeiks@gmail.com",
+  phone: "07040508289",
+  address: "Lakanre",
+  bank: "GT Bank",
+  account_name: "Alayemi Oluwasegun Victor",
+  account_number: "0600114069"
 };
 
 const schema = Yup.object({
@@ -50,10 +50,12 @@ const schema = Yup.object({
 });
 
 const CreateInvestor = ({ show, toggle }) => {
-  const { isLoading, isSuccess, mutateAsync } = useCreateInvestor();
+  const { isLoading, mutateAsync } = useCreateInvestor();
 
-  if (isSuccess) toggle();
-  const handleSubmit = async values => await mutateAsync(values);
+  const handleSubmit = async values => {
+    const { success } = await mutateAsync(values);
+    if (success) toggle();
+  };
 
   return (
     <Modal size="md" centered show={show} onHide={toggle}>

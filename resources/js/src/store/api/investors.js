@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { useQuery, useMutation } from "react-query";
+import { useQuery, useMutation, useQueryClient } from "react-query";
 
 async function createInvestor(values) {
   return await axios.get("/sanctum/csrf-cookie").then(async () => {
@@ -7,7 +7,7 @@ async function createInvestor(values) {
       .post("/api/investors", values)
       .then(res => res.data)
       .catch(error => {
-        throw error;
+        throw error.response.data;
       });
   });
 }
@@ -49,7 +49,7 @@ async function fetchAllInvestors() {
   return await axios.get("/sanctum/csrf-cookie").then(async () => {
     return await axios
       .get("/api/investors")
-      .then(res => res.data)
+      .then(res => res.data.data)
       .catch(error => {
         throw error;
       });
@@ -61,32 +61,73 @@ export function useFetchAllInvestors() {
 }
 
 export function useFetchInvestor(slug) {
-  return useQuery(["investor", slug], () => fetchInvestor(slug));
-}
+  const queryClient = useQueryClient();
 
-export function useUpdateInvestor() {
-  const dispatch = useDispatch();
-
-  return useMutation(updateInvestor, {
-    onError: error => dispatch({ type: "ERROR", error }),
-    onSuccess: data => dispatch({ type: "SUCCESS", data })
+  return useQuery(["investor", slug], () => fetchInvestor(slug), {
+    enabled: false,
+    onSuccess: async data => {
+      const investors = [data?.data];
+      await queryClient.setQueryData("investors", investors);
+      queryClient.removeQueries("investors");
+    }
   });
 }
 
-export function useDeleteInvestor() {
+export function useUpdateInvestor(slug) {
   const dispatch = useDispatch();
+  const queryClient = useQueryClient();
+
+  return useMutation(updateInvestor, {
+    onError: error => dispatch({ type: "ERROR", error }),
+    onSuccess: async data => {
+      dispatch({ type: "SUCCESS", data });
+
+      const investors = queryClient.getQueryData("investors");
+      if (!investors?.length) return;
+
+      const elementIndex = investors?.findIndex(el => el?.slug === slug);
+      investors[elementIndex] = data?.data;
+
+      await queryClient.setQueryData("investors", investors);
+    }
+  });
+}
+
+export function useDeleteInvestor(slug) {
+  const dispatch = useDispatch();
+  const queryClient = useQueryClient();
 
   return useMutation(deleteInvestor, {
     onError: error => dispatch({ type: "ERROR", error }),
-    onSuccess: data => dispatch({ type: "SUCCESS", data })
+    onSuccess: async data => {
+      dispatch({ type: "SUCCESS", data });
+
+      const investors = queryClient.getQueryData("investors");
+      if (!investors?.length) return;
+
+      const update = investors?.filter(item => item.slug !== slug);
+      await queryClient.setQueryData("investors", update);
+    }
   });
 }
 
 export function useCreateInvestor() {
   const dispatch = useDispatch();
+  const queryClient = useQueryClient();
 
   return useMutation(createInvestor, {
     onError: error => dispatch({ type: "ERROR", error }),
-    onSuccess: data => dispatch({ type: "SUCCESS", data })
+    onSuccess: data => {
+      dispatch({ type: "SUCCESS", data });
+
+      let investors = queryClient.getQueryData("investors");
+
+      if (!investors) {
+        return queryClient.setQueryData("investors", [data.data]);
+      }
+
+      investors.push(data.data);
+      queryClient.setQueryData("investors", investors);
+    }
   });
 }

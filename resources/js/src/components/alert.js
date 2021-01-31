@@ -1,4 +1,5 @@
 import React from "react";
+import cn from "classnames";
 import { useDispatch, useSelector } from "react-redux";
 
 import Modal from "./modal";
@@ -7,18 +8,29 @@ import CloseButton from "./close-button";
 import CheckCircle from "../icons/check-circle";
 import AlertTriangle from "../icons/alert-triangle";
 
-const Icon = type => {
+const Icon = ({ type }) => {
   switch (type) {
     case "success":
       return <CheckCircle size="lg" color="green" />;
     case "danger":
-      <AlertTriangle size="lg" color="danger" />;
+      return <AlertTriangle size="lg" color="danger" />;
     default:
-      return <CheckCircle size="lg" color="red" />;
+      return null;
   }
 };
 
-const AlertComponent = ({ size = "sm", type, alert, handleHide }) => {
+const AlertComponent = ({
+  alert,
+  handleHide,
+  size = "sm",
+  type = "success"
+}) => {
+  let messages = [];
+
+  if (alert.type === "danger") {
+    messages = Object.values(alert?.message).map(i => i[0]);
+  }
+
   return (
     <Modal size={size} centered show={alert?.open} onHide={handleHide}>
       <CloseButton onClick={handleHide} />
@@ -26,7 +38,15 @@ const AlertComponent = ({ size = "sm", type, alert, handleHide }) => {
       <ModalBody className="text-center py-4">
         <Icon type={type} />
         <h3>{alert?.title}</h3>
-        <div className="text-muted">{alert?.message}</div>
+        {messages && messages?.length ? (
+          messages.map(i => (
+            <div key={i} className="text-muted">
+              {i}
+            </div>
+          ))
+        ) : (
+          <div className="text-muted">{alert?.message}</div>
+        )}
       </ModalBody>
     </Modal>
   );
@@ -38,7 +58,7 @@ const Alert = () => {
   const handleHide = () => dispatch({ type: "CLOSE_ALERT" });
 
   return (
-    <AlertComponent alert={alert} type={alert.type} handleHide={handleHide} />
+    <AlertComponent alert={alert} type={alert?.type} handleHide={handleHide} />
   );
 };
 

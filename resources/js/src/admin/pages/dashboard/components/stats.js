@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Col from "../../../../components/col";
 import Row from "../../../../components/row";
 import Card from "../../../../components/card";
+import UsersIcon from "../../../../icons/users";
 import Avatar from "../../../../components/avatar";
 import CardBody from "../../../../components/card-body";
 
@@ -11,9 +12,9 @@ const Stats = () => {
   return (
     <>
       <StatCard />
-      <StatCard />
-      <StatCard />
-      <StatCard />
+      <Col sm={6} lg={3} />
+      <Col sm={6} lg={3} />
+      <Col sm={6} lg={3} />
     </>
   );
 };
@@ -33,11 +34,11 @@ const StatCard = () => {
           <Row align="center">
             <Col width="auto">
               <Avatar bg="blue" color="white">
-                a
+                <UsersIcon />
               </Avatar>
             </Col>
             <Col>
-              <div className="font-weight-medium">1,352</div>
+              <div className="font-weight-medium">0</div>
               <div className="text-muted">Active Investors</div>
             </Col>
           </Row>

@@ -1,4 +1,4 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[16],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[19],{
 
 /***/ "./resources/js/src/components/card-body.js":
 /*!**************************************************!*\
