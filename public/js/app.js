@@ -65842,10 +65842,10 @@ __webpack_require__.r(__webpack_exports__);
 var SIGN_IN = "/signin";
 var SIGN_UP = "/signup";
 var SignUp = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.lazy(function () {
-  return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1), __webpack_require__.e(2), __webpack_require__.e(19), __webpack_require__.e(15)]).then(__webpack_require__.bind(null, /*! ./pages/signup */ "./resources/js/src/auth/pages/signup.js"));
+  return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1), __webpack_require__.e(2), __webpack_require__.e(18), __webpack_require__.e(15)]).then(__webpack_require__.bind(null, /*! ./pages/signup */ "./resources/js/src/auth/pages/signup.js"));
 });
 var SignIn = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.lazy(function () {
-  return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1), __webpack_require__.e(2), __webpack_require__.e(19), __webpack_require__.e(14)]).then(__webpack_require__.bind(null, /*! ./pages/signin */ "./resources/js/src/auth/pages/signin.js"));
+  return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1), __webpack_require__.e(2), __webpack_require__.e(18), __webpack_require__.e(14)]).then(__webpack_require__.bind(null, /*! ./pages/signin */ "./resources/js/src/auth/pages/signin.js"));
 });
 
 var App = function App() {

@@ -8,7 +8,12 @@ import ModalBody from "../../../components/modal-body";
 import AlertIcon from "../../../icons/alert-triangle";
 import ModalFooter from "../../../components/modal-footer";
 
-const ConfirmDelete = ({ show, toggle, deleteInvestor }) => {
+const ConfirmDelete = ({
+  show,
+  toggle,
+  deleteInvestor,
+  permanentDeleteInvestor
+}) => {
   return (
     <Modal size="sm" show={show} centered onHide={toggle}>
       <ModalBody className="text-center py-4">
@@ -21,14 +26,23 @@ const ConfirmDelete = ({ show, toggle, deleteInvestor }) => {
       <ModalFooter>
         <div className="w-100">
           <Row>
-            <Col>
-              <Button variant="white" fullWidth onClick={toggle}>
-                Cancel
+            <Col width={12} sm={6}>
+              <Button
+                fullWidth
+                variant="danger"
+                onClick={permanentDeleteInvestor}
+              >
+                Permanently Delete
               </Button>
             </Col>
-            <Col>
-              <Button variant="danger" fullWidth onClick={deleteInvestor}>
-                Delete Investor
+            <Col className="mt-2 mt-sm-0" width={12} sm={6}>
+              <Button className="text-red" fullWidth onClick={deleteInvestor}>
+                Safe Delete
+              </Button>
+            </Col>
+            <Col width={12} className="mt-2">
+              <Button fullWidth onClick={toggle}>
+                Cancel
               </Button>
             </Col>
           </Row>

@@ -13,7 +13,8 @@ import Container from "../../../components/container";
 import {
   useFetchInvestor,
   useDeleteInvestor,
-  useUpdateInvestor
+  useUpdateInvestor,
+  usePermanentDeleteInvestor
 } from "../../../store/api/investors";
 
 const schema = Yup.object({
@@ -66,6 +67,11 @@ const Investor = () => {
     mutateAsync: deleteInvestor
   } = useDeleteInvestor(slug);
 
+  const {
+    isLoading: permanentlyDeleting,
+    mutateAsync: permanentDeleteInvestor
+  } = usePermanentDeleteInvestor(slug);
+
   const initialValues = {
     name: investor?.name,
     bank: investor?.bank,
@@ -81,6 +87,10 @@ const Investor = () => {
   const handleDelete = async () => {
     toggleDeleteModal();
     await deleteInvestor(slug);
+  };
+  const handlePermanentDelete = async () => {
+    toggleDeleteModal();
+    await permanentDeleteInvestor(slug);
   };
 
   if (isFetching) return <h1>FETCHING</h1>;
@@ -196,8 +206,8 @@ const Investor = () => {
                       fullWidth
                       type="button"
                       variant="danger"
-                      isLoading={deleting}
                       onClick={toggleDeleteModal}
+                      isLoading={deleting || permanentlyDeleting}
                     >
                       Delete
                     </Button>
@@ -223,6 +233,7 @@ const Investor = () => {
         show={deleteModal}
         toggle={toggleDeleteModal}
         deleteInvestor={handleDelete}
+        permanentDeleteInvestor={handlePermanentDelete}
       />
     </>
   );

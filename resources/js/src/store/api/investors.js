@@ -46,6 +46,17 @@ async function deleteInvestor(slug) {
   });
 }
 
+async function permanentDeleteInvestor(slug) {
+  return await axios.get("/sanctum/csrf-cookie").then(async () => {
+    return await axios
+      .delete(`/api/investors/${slug}/force`)
+      .then(res => res.data)
+      .catch(error => {
+        throw error;
+      });
+  });
+}
+
 async function fetchAllInvestors() {
   return await axios.get("/sanctum/csrf-cookie").then(async () => {
     return await axios
@@ -114,6 +125,26 @@ export function useDeleteInvestor(slug) {
   });
 }
 
+export function usePermanentDeleteInvestor(slug) {
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const queryClient = useQueryClient();
+
+  return useMutation(permanentDeleteInvestor, {
+    onError: error => dispatch({ type: "ERROR", error }),
+    onSuccess: async data => {
+      dispatch({ type: "SUCCESS", data });
+      history.push("/investors");
+
+      const investors = queryClient.getQueryData("investors");
+      if (!investors?.length) return;
+
+      const update = investors?.filter(item => item.slug !== slug);
+      await queryClient.setQueryData("investors", update);
+    }
+  });
+}
+
 export function useCreateInvestor() {
   const dispatch = useDispatch();
   const queryClient = useQueryClient();
@@ -125,7 +156,7 @@ export function useCreateInvestor() {
 
       let investors = queryClient.getQueryData("investors");
 
-      if (!investors) {
+      if (!investors?.length) {
         return queryClient.setQueryData("investors", [data.data]);
       }
 

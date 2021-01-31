@@ -4,7 +4,7 @@
 /*!*************************************************!*\
   !*** ./resources/js/src/store/api/investors.js ***!
   \*************************************************/
-/*! exports provided: useFetchAllInvestors, useFetchInvestor, useUpdateInvestor, useDeleteInvestor, useCreateInvestor */
+/*! exports provided: useFetchAllInvestors, useFetchInvestor, useUpdateInvestor, useDeleteInvestor, usePermanentDeleteInvestor, useCreateInvestor */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -13,6 +13,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "useFetchInvestor", function() { return useFetchInvestor; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "useUpdateInvestor", function() { return useUpdateInvestor; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "useDeleteInvestor", function() { return useDeleteInvestor; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "usePermanentDeleteInvestor", function() { return usePermanentDeleteInvestor; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "useCreateInvestor", function() { return useCreateInvestor; });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
@@ -34,18 +35,18 @@ function createInvestor(_x) {
 }
 
 function _createInvestor() {
-  _createInvestor = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5(values) {
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
+  _createInvestor = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6(values) {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee6$(_context6) {
       while (1) {
-        switch (_context5.prev = _context5.next) {
+        switch (_context6.prev = _context6.next) {
           case 0:
-            _context5.next = 2;
-            return axios.get("/sanctum/csrf-cookie").then( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
-              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+            _context6.next = 2;
+            return axios.get("/sanctum/csrf-cookie").then( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
                 while (1) {
-                  switch (_context4.prev = _context4.next) {
+                  switch (_context5.prev = _context5.next) {
                     case 0:
-                      _context4.next = 2;
+                      _context5.next = 2;
                       return axios.post("/api/investors", values).then(function (res) {
                         return res.data;
                       })["catch"](function (error) {
@@ -53,25 +54,25 @@ function _createInvestor() {
                       });
 
                     case 2:
-                      return _context4.abrupt("return", _context4.sent);
+                      return _context5.abrupt("return", _context5.sent);
 
                     case 3:
                     case "end":
-                      return _context4.stop();
+                      return _context5.stop();
                   }
                 }
-              }, _callee4);
+              }, _callee5);
             })));
 
           case 2:
-            return _context5.abrupt("return", _context5.sent);
+            return _context6.abrupt("return", _context6.sent);
 
           case 3:
           case "end":
-            return _context5.stop();
+            return _context6.stop();
         }
       }
-    }, _callee5);
+    }, _callee6);
   }));
   return _createInvestor.apply(this, arguments);
 }
@@ -81,18 +82,18 @@ function fetchInvestor(_x2) {
 }
 
 function _fetchInvestor() {
-  _fetchInvestor = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee7(slug) {
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee7$(_context7) {
+  _fetchInvestor = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee8(slug) {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee8$(_context8) {
       while (1) {
-        switch (_context7.prev = _context7.next) {
+        switch (_context8.prev = _context8.next) {
           case 0:
-            _context7.next = 2;
-            return axios.get("/sanctum/csrf-cookie").then( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6() {
-              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee6$(_context6) {
+            _context8.next = 2;
+            return axios.get("/sanctum/csrf-cookie").then( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee7() {
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee7$(_context7) {
                 while (1) {
-                  switch (_context6.prev = _context6.next) {
+                  switch (_context7.prev = _context7.next) {
                     case 0:
-                      _context6.next = 2;
+                      _context7.next = 2;
                       return axios.get("/api/investors/".concat(slug)).then(function (res) {
                         return res.data;
                       })["catch"](function (error) {
@@ -100,25 +101,25 @@ function _fetchInvestor() {
                       });
 
                     case 2:
-                      return _context6.abrupt("return", _context6.sent);
+                      return _context7.abrupt("return", _context7.sent);
 
                     case 3:
                     case "end":
-                      return _context6.stop();
+                      return _context7.stop();
                   }
                 }
-              }, _callee6);
+              }, _callee7);
             })));
 
           case 2:
-            return _context7.abrupt("return", _context7.sent);
+            return _context8.abrupt("return", _context8.sent);
 
           case 3:
           case "end":
-            return _context7.stop();
+            return _context8.stop();
         }
       }
-    }, _callee7);
+    }, _callee8);
   }));
   return _fetchInvestor.apply(this, arguments);
 }
@@ -128,18 +129,18 @@ function updateInvestor(_x3) {
 }
 
 function _updateInvestor() {
-  _updateInvestor = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee9(data) {
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee9$(_context9) {
+  _updateInvestor = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee10(data) {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee10$(_context10) {
       while (1) {
-        switch (_context9.prev = _context9.next) {
+        switch (_context10.prev = _context10.next) {
           case 0:
-            _context9.next = 2;
-            return axios.get("/sanctum/csrf-cookie").then( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee8() {
-              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee8$(_context8) {
+            _context10.next = 2;
+            return axios.get("/sanctum/csrf-cookie").then( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee9() {
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee9$(_context9) {
                 while (1) {
-                  switch (_context8.prev = _context8.next) {
+                  switch (_context9.prev = _context9.next) {
                     case 0:
-                      _context8.next = 2;
+                      _context9.next = 2;
                       return axios.put("/api/investors/".concat(data.slug), data.values).then(function (res) {
                         return res.data;
                       })["catch"](function (error) {
@@ -147,25 +148,25 @@ function _updateInvestor() {
                       });
 
                     case 2:
-                      return _context8.abrupt("return", _context8.sent);
+                      return _context9.abrupt("return", _context9.sent);
 
                     case 3:
                     case "end":
-                      return _context8.stop();
+                      return _context9.stop();
                   }
                 }
-              }, _callee8);
+              }, _callee9);
             })));
 
           case 2:
-            return _context9.abrupt("return", _context9.sent);
+            return _context10.abrupt("return", _context10.sent);
 
           case 3:
           case "end":
-            return _context9.stop();
+            return _context10.stop();
         }
       }
-    }, _callee9);
+    }, _callee10);
   }));
   return _updateInvestor.apply(this, arguments);
 }
@@ -175,18 +176,18 @@ function deleteInvestor(_x4) {
 }
 
 function _deleteInvestor() {
-  _deleteInvestor = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee11(slug) {
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee11$(_context11) {
+  _deleteInvestor = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee12(slug) {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee12$(_context12) {
       while (1) {
-        switch (_context11.prev = _context11.next) {
+        switch (_context12.prev = _context12.next) {
           case 0:
-            _context11.next = 2;
-            return axios.get("/sanctum/csrf-cookie").then( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee10() {
-              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee10$(_context10) {
+            _context12.next = 2;
+            return axios.get("/sanctum/csrf-cookie").then( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee11() {
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee11$(_context11) {
                 while (1) {
-                  switch (_context10.prev = _context10.next) {
+                  switch (_context11.prev = _context11.next) {
                     case 0:
-                      _context10.next = 2;
+                      _context11.next = 2;
                       return axios["delete"]("/api/investors/".concat(slug)).then(function (res) {
                         return res.data;
                       })["catch"](function (error) {
@@ -194,27 +195,74 @@ function _deleteInvestor() {
                       });
 
                     case 2:
-                      return _context10.abrupt("return", _context10.sent);
+                      return _context11.abrupt("return", _context11.sent);
 
                     case 3:
                     case "end":
-                      return _context10.stop();
+                      return _context11.stop();
                   }
                 }
-              }, _callee10);
+              }, _callee11);
             })));
 
           case 2:
-            return _context11.abrupt("return", _context11.sent);
+            return _context12.abrupt("return", _context12.sent);
 
           case 3:
           case "end":
-            return _context11.stop();
+            return _context12.stop();
         }
       }
-    }, _callee11);
+    }, _callee12);
   }));
   return _deleteInvestor.apply(this, arguments);
+}
+
+function permanentDeleteInvestor(_x5) {
+  return _permanentDeleteInvestor.apply(this, arguments);
+}
+
+function _permanentDeleteInvestor() {
+  _permanentDeleteInvestor = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee14(slug) {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee14$(_context14) {
+      while (1) {
+        switch (_context14.prev = _context14.next) {
+          case 0:
+            _context14.next = 2;
+            return axios.get("/sanctum/csrf-cookie").then( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee13() {
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee13$(_context13) {
+                while (1) {
+                  switch (_context13.prev = _context13.next) {
+                    case 0:
+                      _context13.next = 2;
+                      return axios["delete"]("/api/investors/".concat(slug, "/force")).then(function (res) {
+                        return res.data;
+                      })["catch"](function (error) {
+                        throw error;
+                      });
+
+                    case 2:
+                      return _context13.abrupt("return", _context13.sent);
+
+                    case 3:
+                    case "end":
+                      return _context13.stop();
+                  }
+                }
+              }, _callee13);
+            })));
+
+          case 2:
+            return _context14.abrupt("return", _context14.sent);
+
+          case 3:
+          case "end":
+            return _context14.stop();
+        }
+      }
+    }, _callee14);
+  }));
+  return _permanentDeleteInvestor.apply(this, arguments);
 }
 
 function fetchAllInvestors() {
@@ -222,18 +270,18 @@ function fetchAllInvestors() {
 }
 
 function _fetchAllInvestors() {
-  _fetchAllInvestors = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee13() {
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee13$(_context13) {
+  _fetchAllInvestors = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee16() {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee16$(_context16) {
       while (1) {
-        switch (_context13.prev = _context13.next) {
+        switch (_context16.prev = _context16.next) {
           case 0:
-            _context13.next = 2;
-            return axios.get("/sanctum/csrf-cookie").then( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee12() {
-              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee12$(_context12) {
+            _context16.next = 2;
+            return axios.get("/sanctum/csrf-cookie").then( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee15() {
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee15$(_context15) {
                 while (1) {
-                  switch (_context12.prev = _context12.next) {
+                  switch (_context15.prev = _context15.next) {
                     case 0:
-                      _context12.next = 2;
+                      _context15.next = 2;
                       return axios.get("/api/investors").then(function (res) {
                         return res.data.data;
                       })["catch"](function (error) {
@@ -241,25 +289,25 @@ function _fetchAllInvestors() {
                       });
 
                     case 2:
-                      return _context12.abrupt("return", _context12.sent);
+                      return _context15.abrupt("return", _context15.sent);
 
                     case 3:
                     case "end":
-                      return _context12.stop();
+                      return _context15.stop();
                   }
                 }
-              }, _callee12);
+              }, _callee15);
             })));
 
           case 2:
-            return _context13.abrupt("return", _context13.sent);
+            return _context16.abrupt("return", _context16.sent);
 
           case 3:
           case "end":
-            return _context13.stop();
+            return _context16.stop();
         }
       }
-    }, _callee13);
+    }, _callee16);
   }));
   return _fetchAllInvestors.apply(this, arguments);
 }
@@ -295,7 +343,7 @@ function useFetchInvestor(slug) {
         }, _callee);
       }));
 
-      function onSuccess(_x5) {
+      function onSuccess(_x6) {
         return _onSuccess.apply(this, arguments);
       }
 
@@ -349,7 +397,7 @@ function useUpdateInvestor(slug) {
         }, _callee2);
       }));
 
-      function onSuccess(_x6) {
+      function onSuccess(_x7) {
         return _onSuccess2.apply(this, arguments);
       }
 
@@ -404,8 +452,63 @@ function useDeleteInvestor(slug) {
         }, _callee3);
       }));
 
-      function onSuccess(_x7) {
+      function onSuccess(_x8) {
         return _onSuccess3.apply(this, arguments);
+      }
+
+      return onSuccess;
+    }()
+  });
+}
+function usePermanentDeleteInvestor(slug) {
+  var history = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["useHistory"])();
+  var dispatch = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useDispatch"])();
+  var queryClient = Object(react_query__WEBPACK_IMPORTED_MODULE_3__["useQueryClient"])();
+  return Object(react_query__WEBPACK_IMPORTED_MODULE_3__["useMutation"])(permanentDeleteInvestor, {
+    onError: function onError(error) {
+      return dispatch({
+        type: "ERROR",
+        error: error
+      });
+    },
+    onSuccess: function () {
+      var _onSuccess4 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4(data) {
+        var investors, update;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                dispatch({
+                  type: "SUCCESS",
+                  data: data
+                });
+                history.push("/investors");
+                investors = queryClient.getQueryData("investors");
+
+                if (investors !== null && investors !== void 0 && investors.length) {
+                  _context4.next = 5;
+                  break;
+                }
+
+                return _context4.abrupt("return");
+
+              case 5:
+                update = investors === null || investors === void 0 ? void 0 : investors.filter(function (item) {
+                  return item.slug !== slug;
+                });
+                _context4.next = 8;
+                return queryClient.setQueryData("investors", update);
+
+              case 8:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4);
+      }));
+
+      function onSuccess(_x9) {
+        return _onSuccess4.apply(this, arguments);
       }
 
       return onSuccess;
@@ -429,7 +532,7 @@ function useCreateInvestor() {
       });
       var investors = queryClient.getQueryData("investors");
 
-      if (!investors) {
+      if (!(investors !== null && investors !== void 0 && investors.length)) {
         return queryClient.setQueryData("investors", [data.data]);
       }
 

@@ -30,7 +30,8 @@ __webpack_require__.r(__webpack_exports__);
 var ConfirmDelete = function ConfirmDelete(_ref) {
   var show = _ref.show,
       toggle = _ref.toggle,
-      deleteInvestor = _ref.deleteInvestor;
+      deleteInvestor = _ref.deleteInvestor,
+      permanentDeleteInvestor = _ref.permanentDeleteInvestor;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_modal__WEBPACK_IMPORTED_MODULE_3__["default"], {
     size: "sm",
     show: show,
@@ -42,15 +43,28 @@ var ConfirmDelete = function ConfirmDelete(_ref) {
     className: "text-muted"
   }, "Do you really want to delete the investor?")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_modal_footer__WEBPACK_IMPORTED_MODULE_7__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "w-100"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_row__WEBPACK_IMPORTED_MODULE_1__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_col__WEBPACK_IMPORTED_MODULE_2__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_button__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    variant: "white",
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_row__WEBPACK_IMPORTED_MODULE_1__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_col__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    width: 12,
+    sm: 6
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_button__WEBPACK_IMPORTED_MODULE_4__["default"], {
     fullWidth: true,
-    onClick: toggle
-  }, "Cancel")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_col__WEBPACK_IMPORTED_MODULE_2__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_button__WEBPACK_IMPORTED_MODULE_4__["default"], {
     variant: "danger",
+    onClick: permanentDeleteInvestor
+  }, "Permanently Delete")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_col__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    className: "mt-2 mt-sm-0",
+    width: 12,
+    sm: 6
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_button__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    className: "text-red",
     fullWidth: true,
     onClick: deleteInvestor
-  }, "Delete Investor"))))));
+  }, "Safe Delete")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_col__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    width: 12,
+    className: "mt-2"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_button__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    fullWidth: true,
+    onClick: toggle
+  }, "Cancel"))))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (ConfirmDelete);
@@ -184,6 +198,10 @@ var Investor = function Investor() {
       deleting = _useDeleteInvestor.isLoading,
       deleteInvestor = _useDeleteInvestor.mutateAsync;
 
+  var _usePermanentDeleteIn = Object(_store_api_investors__WEBPACK_IMPORTED_MODULE_12__["usePermanentDeleteInvestor"])(slug),
+      permanentlyDeleting = _usePermanentDeleteIn.isLoading,
+      permanentDeleteInvestor = _usePermanentDeleteIn.mutateAsync;
+
   var initialValues = {
     name: investor === null || investor === void 0 ? void 0 : investor.name,
     bank: investor === null || investor === void 0 ? void 0 : investor.bank,
@@ -249,18 +267,41 @@ var Investor = function Investor() {
     };
   }();
 
+  var handlePermanentDelete = /*#__PURE__*/function () {
+    var _ref4 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              toggleDeleteModal();
+              _context4.next = 3;
+              return permanentDeleteInvestor(slug);
+
+            case 3:
+            case "end":
+              return _context4.stop();
+          }
+        }
+      }, _callee4);
+    }));
+
+    return function handlePermanentDelete() {
+      return _ref4.apply(this, arguments);
+    };
+  }();
+
   if (isFetching) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", null, "FETCHING");
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_components_container__WEBPACK_IMPORTED_MODULE_11__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_3__["Formik"], {
     onSubmit: handleUpdate,
     validationSchema: schema,
     initialValues: initialValues
-  }, function (_ref4) {
-    var errors = _ref4.errors,
-        values = _ref4.values,
-        touched = _ref4.touched,
-        handleBlur = _ref4.handleBlur,
-        handleSubmit = _ref4.handleSubmit,
-        handleChange = _ref4.handleChange;
+  }, function (_ref5) {
+    var errors = _ref5.errors,
+        values = _ref5.values,
+        touched = _ref5.touched,
+        handleBlur = _ref5.handleBlur,
+        handleSubmit = _ref5.handleSubmit,
+        handleChange = _ref5.handleChange;
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("form", {
       onSubmit: handleSubmit
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_components_row__WEBPACK_IMPORTED_MODULE_6__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_components_col__WEBPACK_IMPORTED_MODULE_7__["default"], {
@@ -366,8 +407,8 @@ var Investor = function Investor() {
       fullWidth: true,
       type: "button",
       variant: "danger",
-      isLoading: deleting,
-      onClick: toggleDeleteModal
+      onClick: toggleDeleteModal,
+      isLoading: deleting || permanentlyDeleting
     }, "Delete")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_components_col__WEBPACK_IMPORTED_MODULE_7__["default"], {
       width: 12,
       sm: 3
@@ -380,7 +421,8 @@ var Investor = function Investor() {
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_confirm_delete__WEBPACK_IMPORTED_MODULE_8__["default"], {
     show: deleteModal,
     toggle: toggleDeleteModal,
-    deleteInvestor: handleDelete
+    deleteInvestor: handleDelete,
+    permanentDeleteInvestor: handlePermanentDelete
   }));
 };
 
